@@ -1,0 +1,69 @@
+@import 'display';
+@import 'spacing';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+
+  background-color: #f3efe4;
+}
+
+* {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 15px;
+  color: #4f6fa5;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1240px;
+}
+
+.field {
+  min-width: 100px;
+  height: 65px;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 0 25px;
+  font-size: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.loader {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 0.3rem solid rgba(#b1aa97, 0.3);
+  border-top-color: #b1aa97;
+  animation: 0.5s spin infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

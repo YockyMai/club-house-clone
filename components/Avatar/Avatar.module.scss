@@ -1,0 +1,19 @@
+.avatar {
+  position: relative;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.avatarBorder {
+  border: 5px solid #fff;
+  box-shadow: 0 0 0 4px #e5e0d0;
+}
+
+.mask {
+  position: absolute;
+}
+
+.border {
+  position: relative;
+  z-index: 1;
+}

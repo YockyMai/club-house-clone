@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  border-bottom: 1px solid #eae6da;
+  padding: 10px 10px 13px;
+}
+
+.headerLogo {
+  img {
+    width: 32px;
+    height: 32px;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin: 0;
+  }
+}
