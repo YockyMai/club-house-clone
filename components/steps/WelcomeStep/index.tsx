@@ -4,8 +4,8 @@ import { Button } from '../../Button';
 import styles from './WelcomeStep.module.scss';
 import React from 'react';
 
-export const WelcomeStep: React.FC = () => {
-  return (
+export const WelcomeStep: React.FC = (step:number,setStep:any) => {
+    return (
     <WhiteBlock className={styles.block}>
       <h3 className={styles.title}>
         <img className={styles.handWaveImg} src="/static/hand-wave.png" alt="Celebration" />

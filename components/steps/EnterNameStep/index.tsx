@@ -5,20 +5,13 @@ import { StepInfo } from '../../StepInfo';
 
 import styles from './EnterNameStep.module.scss';
 import React from 'react';
-import { MainContext } from '../../../pages';
+
 
 export const EnterNameStep = () => {
   const [inputValue, setInputValue] = React.useState<string>('');
-  const { onNextStep } = React.useContext(MainContext);
-
-  const nextDisabled = !inputValue;
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
-  };
-
-  const onClickNextStep = () => {
-    onNextStep();
   };
 
   return (
@@ -37,7 +30,7 @@ export const EnterNameStep = () => {
             placeholder="Enter fullname"
           />
         </div>
-        <Button disabled={nextDisabled} onClick={onClickNextStep}>
+        <Button>
           Next
           <img className="d-ib ml-10" src="/static/arrow.svg" />
         </Button>

@@ -15,7 +15,6 @@ type InputValueState = {
 export const EnterPhoneStep = () => {
 
   const [values, setValues] = React.useState<InputValueState>({} as InputValueState);
-
   const nextDisabled = !values.formattedValue || values.formattedValue.includes('_');
 
   return (
@@ -30,9 +29,9 @@ export const EnterPhoneStep = () => {
           <img src="/static/russian-flag.png" alt="flag" width={24} />
           <NumberFormat
             className="field"
-            format="+# (###) ###-##-##"
+            format="+7 (###) ###-##-##"
             mask="_"
-            placeholder="+7 (999) 333-22-11"
+            placeholder="+7 (999) 999-99-99"
             value={values.value}
             onValueChange={({ formattedValue, value }) => setValues({ formattedValue, value })}
           />
