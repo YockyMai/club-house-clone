@@ -17,11 +17,11 @@ const stepsComponents = {
 }
 
 const Home: NextPage = () => {
-    const [step, setStep] = React.useState<number>(3); // Шаги для определения степов регистрации!
-    const CurrentStep = stepsComponents[step];
+    const [step, setStep] = React.useState<number>(4); // Шаги для определения степов регистрации!
+    let CurrentStep = stepsComponents[step];
     return (
         <div>
-            <CurrentStep step={step} setStep={setStep}/>
+            <CurrentStep step={step}/>
         </div>
     );
 };
