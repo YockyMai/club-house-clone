@@ -5,9 +5,13 @@ import styles from './EnterPhoneStep.module.scss';
 import {Button} from '../../Button';
 import {StepInfo} from '../../StepInfo';
 import {WhiteBlock} from '../../WhiteBlock';
+import axios from '../../../core/axios';
+import {AxiosResponse} from "axios";
+import {useRouter} from "next/router";
 
 export const EnterCodeStep = () => {
-    const [loading, setLoading] = React.useState<boolean>(true);
+    const router = useRouter()
+    const [loading, setLoading] = React.useState<boolean>(false);
     const [codes, setCodes] = React.useState(['', '', '', ''])
 
     let nextDisabled: boolean = !codes.every((value) => value != ''); // Проверка на заполнение кода
@@ -27,20 +31,30 @@ export const EnterCodeStep = () => {
         });
     }
 
-    const onSubmit = () => {
-        setLoading(!loading)
+    const onSubmit = async () => {
+        setLoading(true)
+        try {
+            await axios.get('/todos').then((response: AxiosResponse) => {
+                setLoading(false);
+                console.log(useRouter)
+                router.push('/rooms');
+            })
+        } catch (error) {
+            alert('Code is incorrect');
+            setLoading(false)
+        }
     }
 
     return (
         <div className={styles.block}>
-            {loading ?
+            {!loading ?
                 <>
                     <StepInfo icon="/static/numbers.png" title="Enter your activate code"/>
                     <WhiteBlock className={clsx('m-auto mt-30', styles.whiteBlock)}>
                         <div className={clsx('mb-30', styles.codeInput)}>
                             <input
                                 type="tel"
-                                placeholder="X"
+                                placeholder="*"
                                 maxLength={1}
                                 id="1"
                                 onChange={handleChangeInput}
@@ -48,7 +62,7 @@ export const EnterCodeStep = () => {
                             />
                             <input
                                 type="tel"
-                                placeholder="X"
+                                placeholder="*"
                                 maxLength={1}
                                 id="2"
                                 onChange={handleChangeInput}
@@ -56,7 +70,7 @@ export const EnterCodeStep = () => {
                             />
                             <input
                                 type="tel"
-                                placeholder="X"
+                                placeholder="*"
                                 maxLength={1}
                                 id="3"
                                 onChange={handleChangeInput}
@@ -64,7 +78,7 @@ export const EnterCodeStep = () => {
                             />
                             <input
                                 type="tel"
-                                placeholder="X"
+                                placeholder="*"
                                 maxLength={1}
                                 id="4"
                                 onChange={handleChangeInput}
