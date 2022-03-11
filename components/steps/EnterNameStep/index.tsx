@@ -6,13 +6,20 @@ import { StepInfo } from '../../StepInfo';
 import styles from './EnterNameStep.module.scss';
 import React from 'react';
 
+interface EnterPhoneStepProps {
+    onNextStep: any
+}
 
-export const EnterNameStep = () => {
+export const EnterNameStep: React.FC<EnterPhoneStepProps> = ({onNextStep}) => {
   const [inputValue, setInputValue] = React.useState<string>('');
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
+
+    function nextStep() {
+        onNextStep()
+    }
 
   return (
     <div className={styles.block}>
@@ -30,7 +37,7 @@ export const EnterNameStep = () => {
             placeholder="Enter fullname"
           />
         </div>
-        <Button>
+        <Button onClick={nextStep}>
           Next
           <img className="d-ib ml-10" src="/static/arrow.svg" />
         </Button>
