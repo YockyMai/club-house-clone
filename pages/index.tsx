@@ -7,7 +7,7 @@ import {ChooseAvatarStep} from "../components/steps/ChooseAvatarStep";
 import {EnterPhoneStep} from "../components/steps/EnterPhoneStep";
 import {EnterCodeStep} from "../components/steps/EnterCodeStep";
 
-const stepsComponents = {
+const stepsComponents: any = {
     0: WelcomeStep,
     1: EnterNameStep,
     2: TwitterStep,
@@ -18,7 +18,7 @@ const stepsComponents = {
 
 const Home: NextPage = () => {
     const [step, setStep] = React.useState<number>(0); // Шаги для определения степов регистрации!
-    let CurrentStep = stepsComponents[step];
+    const CurrentStep = stepsComponents[step];
     return (
         <div>
             <CurrentStep onNextStep={() => {

@@ -18,7 +18,7 @@ export const EnterCodeStep = () => {
 
     //TODO Доделать инпут для взаимодействия с Backspace
     function handleChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
-        const id: number = e.target.id - 1; //Получил id каждого изменяемого инпута с помошбю метода e.target.id
+        const id: number = Number(e.target.id) - 1; //Получил id каждого изменяемого инпута с помошбю метода e.target.id
 
         if (e.target.nextSibling) {
             (e.target.nextSibling as HTMLInputElement).focus();
@@ -35,9 +35,9 @@ export const EnterCodeStep = () => {
         setLoading(true)
         try {
             await axios.get('/todos').then((response: AxiosResponse) => {
-                setLoading(false);
                 console.log(useRouter)
                 router.push('/rooms');
+                setLoading(false);
             })
         } catch (error) {
             alert('Code is incorrect');

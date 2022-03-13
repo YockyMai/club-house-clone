@@ -20,7 +20,7 @@ export const TwitterStep: React.FC<TwitterStepProps> = ({onNextStep}) => {
             <StepInfo icon="/static/connect.png" title="Do you want import info from Twitter?"/>
             <WhiteBlock className={clsx('m-auto mt-40', styles.whiteBlock)}>
                 <div className={styles.avatar}>
-                    <b>AD</b>
+                    <b>YI</b>
                     <svg
                         width="100"
                         height="100"
@@ -34,13 +34,13 @@ export const TwitterStep: React.FC<TwitterStepProps> = ({onNextStep}) => {
                         />
                     </svg>
                 </div>
-                <h2 className="mb-40">Archakov Dennis</h2>
-                <Button onClick={nextStep}>
+                <h2 className="mb-40">Your info</h2>
+                <Button>
                     <img src="/static/twitter.svg" alt="Twitter logo" className={styles.twitterLogo}/>
                     Import from Twitter
                     <img className="d-ib ml-10" src="/static/arrow.svg"/>
                 </Button>
-                <div className="link mt-20 cup d-ib">Enter my info manually</div>
+                <div onClick={nextStep} className="link mt-20 cup d-ib">Enter my info manually</div>
             </WhiteBlock>
         </div>
     );
