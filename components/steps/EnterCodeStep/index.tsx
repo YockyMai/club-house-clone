@@ -23,7 +23,6 @@ export const EnterCodeStep = () => {
         if (e.target.nextSibling) {
             (e.target.nextSibling as HTMLInputElement).focus();
         }
-
         setCodes((prev: any) => {
             const newArray = [...prev];
             newArray[id] = e.target.value;
