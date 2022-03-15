@@ -1,0 +1,67 @@
+.card {
+    padding: 30px 35px !important;
+    min-height: 170px !important;
+    width: 380px !important;
+    box-sizing: border-box !important;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.title {
+    margin: 0;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.users {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+
+    li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        font-weight: 600;
+
+        img {
+            margin-left: 5px;
+        }
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.avatars {
+    position: relative;
+
+    :global {
+        .lastAvatar {
+            margin-left: -30px;
+            z-index: 1;
+            position: relative;
+            top: 30px;
+        }
+    }
+}
+
+.details {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-right: 10px;
+    }
+}
