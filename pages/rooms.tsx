@@ -2,16 +2,21 @@ import React from 'react';
 import {Header} from "../components/Header";
 import {Button} from "../components/Button";
 import {ConversationCard} from "../components/ConversationCart";
+import Link from 'next/link';
+import axios from "../core/axios";
 
 const RoomsPage: React.FC = () => {
-    const Avatars = [
-        "https://sun9-60.userapi.com/impg/jeXfQKE1Ur1hbY1O9ZlX4qR-od7S1nWP9FoXRQ/0g7ygxIa5PE.jpg?size=1620x2160&quality=96&sign=2e05d1c0a2e900fb1bb147719d5461c3&type=album",
-        "https://cs12.pikabu.ru/post_img/2021/05/14/6/1620980169172670250.jpg",
-    ]
-    const guests = [
-        'Давид Арзуманян',
-        'Эвелина Тагирова',
-    ]
+    const [rooms, setRooms] = React.useState([])
+
+    React.useEffect(() => {
+        (
+            async () => {
+                const {data} = await axios.get("/rooms.json")
+                console.log(data);
+                await setRooms(data)
+            }
+        )() // <--- вызов функции
+    }, [])
     return (
         <div>
             <Header/>
@@ -21,7 +26,7 @@ const RoomsPage: React.FC = () => {
                         <h1 className="">
                             All conversations
                         </h1>
-                        <Button className="ml-20" color={"gray"}>
+                        <Button className="ml-20" color="gray">
                             Explore
                         </Button>
                     </div>
@@ -29,9 +34,22 @@ const RoomsPage: React.FC = () => {
                         Start a room
                     </Button>
                 </div>
-                <div className="d-flex justify-content-between flex-auto">
-                    <ConversationCard title={'Как найти идеальную девушку?'} speakersCount={2} guestsCount={24}
-                                      avatars={Avatars} guests={guests}/>
+                <div className="mt-20 d-flex justify-content-between flex-auto wrap">
+                    {rooms.map((obj) => {
+                        return (
+                            <Link href="/rooms/135153" passHref key={obj.id}>
+                                <a>
+                                    <ConversationCard title={obj.title}
+                                                      speakersCount={obj.speakersCount}
+                                                      guestsCount={obj.guestsCount}
+                                                      avatars={obj.avatars} guests={obj.guests}
+                                    />
+                                </a>
+                            </Link>
+                        )
+                    })}
+
+
                 </div>
             </div>
         </div>

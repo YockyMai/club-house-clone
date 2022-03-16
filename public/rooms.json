@@ -1,0 +1,160 @@
+[
+  {
+    "id": "6069d72643dbf66bb5af225a",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 269,
+    "speakersCount": 2,
+    "title": "Do qui eiusmod nisi ipsum id cupidatat consectetur veniam occaecat fugiat consectetur officia.",
+    "guests": [
+      "Vasya Pupkin",
+      "ИВАНГАЙ",
+      "Наши полномочия всё"
+    ]
+  },
+  {
+    "id": "6069d7264927a4e4db9b7935",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 186,
+    "speakersCount": 5,
+    "title": "Velit fugiat id enim quis fugiat commodo pariatur in eiusmod cupidatat est adipisicing.",
+    "guests": [
+      "Наши полномочия всё",
+      "Vasya Pupkin",
+      "Свика Пеппа",
+      "Amon Bower"
+    ]
+  },
+  {
+    "id": "6069d726118a82af3ef347c0",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?3"
+    ],
+    "guestsCount": 174,
+    "speakersCount": 2,
+    "title": "Non exercitation et aute eu eiusmod.",
+    "guests": [
+      "Amon Bower",
+      "Vasya Pupkin",
+      "ИВАНГАЙ",
+      "Amon Bower"
+    ]
+  },
+  {
+    "id": "6069d726a34e977762f4c593",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?4",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 73,
+    "speakersCount": 5,
+    "title": "Est cillum laboris culpa aute esse adipisicing irure exercitation commodo veniam aliqua mollit magna.",
+    "guests": [
+      "Vasya Pupkin",
+      "Vasya Pupkin",
+      "Свика Пеппа",
+      "Свика Пеппа"
+    ]
+  },
+  {
+    "id": "6069d7266dda543cd21ec304",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 114,
+    "speakersCount": 5,
+    "title": "Nostrud reprehenderit consectetur esse dolore amet incididunt aute mollit quis laboris ullamco veniam magna pariatur.",
+    "guests": [
+      "Vasya Pupkin",
+      "Amon Bower",
+      "Vasya Pupkin",
+      "Марк умер"
+    ]
+  },
+  {
+    "id": "6069d72677fca4cc9ce8405e",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 250,
+    "speakersCount": 2,
+    "title": "Magna dolore anim sint in reprehenderit commodo ad.",
+    "guests": [
+      "Свика Пеппа",
+      "Свика Пеппа",
+      "Amon Bower",
+      "Vasya Pupkin"
+    ]
+  },
+  {
+    "id": "6069d726db52138c40842ba5",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 257,
+    "speakersCount": 3,
+    "title": "Ex cupidatat proident reprehenderit eiusmod occaecat.",
+    "guests": [
+      "Свика Пеппа",
+      "Наши полномочия всё",
+      "Наши полномочия всё",
+      "Свика Пеппа"
+    ]
+  },
+  {
+    "id": "6069d726fbc332d16e3077eb",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 40,
+    "speakersCount": 15,
+    "title": "Qui eiusmod commodo ut anim nostrud id sit occaecat magna mollit.",
+    "guests": [
+      "Vasya Pupkin",
+      "Vasya Pupkin",
+      "Amon Bower",
+      "ИВАНГАЙ"
+    ]
+  },
+  {
+    "id": "6069d726a0ccc614a9f8e336",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 19,
+    "speakersCount": 13,
+    "title": "Excepteur et aliquip voluptate enim non excepteur laborum non veniam.",
+    "guests": [
+      "Amon Bower",
+      "Марк умер",
+      "Свика Пеппа",
+      "Марк умер"
+    ]
+  },
+  {
+    "id": "6069d7264f55c6fbfaf82faa",
+    "avatars": [
+      "https://source.unsplash.com/random/100x100?1",
+      "https://source.unsplash.com/random/100x100?2"
+    ],
+    "guestsCount": 217,
+    "speakersCount": 5,
+    "title": "Ad eiusmod cupidatat est sit nulla deserunt irure enim ut aliquip consequat qui laboris ut.",
+    "guests": [
+      "Свика Пеппа",
+      "Свика Пеппа",
+      "Марк умер",
+      "ИВАНГАЙ"
+    ]
+  }
+]
