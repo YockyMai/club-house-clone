@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-    //baseURL: 'https://jsonplaceholder.typicode.com/', // Указывает базовый URL при запросах с помошью axios!
+    baseURL: 'http://localhost:3000', // Указывает базовый URL при запросах с помошью axios!
+    withCredentials: true
 })
 
 export default instance;

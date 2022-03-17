@@ -1,22 +1,15 @@
 import React from 'react';
 import {Header} from "../components/Header";
 import {Button} from "../components/Button";
-import {ConversationCard} from "../components/ConversationCart";
-import Link from 'next/link';
 import axios from "../core/axios";
+import Link from "next/link";
+import {ConversationCard} from '../components/ConversationCart';
 
-const RoomsPage: React.FC = () => {
-    const [rooms, setRooms] = React.useState([])
+interface RoomsPageProps {
+    rooms: []
+}
 
-    React.useEffect(() => {
-        (
-            async () => {
-                const {data} = await axios.get("/rooms.json")
-                console.log(data);
-                await setRooms(data)
-            }
-        )() // <--- вызов функции
-    }, [])
+const RoomsPage: React.FC<RoomsPageProps> = ({rooms}) => {
     return (
         <div>
             <Header/>
@@ -48,12 +41,30 @@ const RoomsPage: React.FC = () => {
                             </Link>
                         )
                     })}
-
-
                 </div>
             </div>
         </div>
     );
 };
 
+export const getServerSideProps = async () => {
+    try {
+        const {data} = await axios.get('/rooms.json');
+        return {
+            props: {
+                rooms: data
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        return {
+            props: {
+                rooms: {}
+            }
+        }
+    }
+}
+
 export default RoomsPage;
+
+

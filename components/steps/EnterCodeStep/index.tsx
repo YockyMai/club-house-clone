@@ -33,7 +33,7 @@ export const EnterCodeStep = () => {
     const onSubmit = async () => {
         setLoading(true)
         try {
-            await axios.get('/todos').then((response: AxiosResponse) => {
+            await axios.get('https://jsonplaceholder.typicode.com/todos').then((response: AxiosResponse) => {
                 console.log(useRouter)
                 router.push('/rooms');
                 setLoading(false);
