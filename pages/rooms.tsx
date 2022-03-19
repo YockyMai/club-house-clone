@@ -28,9 +28,9 @@ const RoomsPage: React.FC<RoomsPageProps> = ({rooms}) => {
                     </Button>
                 </div>
                 <div className="mt-20 d-flex justify-content-between flex-auto wrap">
-                    {rooms.map((obj) => {
+                    {rooms.map((obj: any) => {
                         return (
-                            <Link href="/rooms/135153" passHref key={obj.id}>
+                            <Link href={`/rooms/${obj.id}`} passHref key={obj.id}>
                                 <a>
                                     <ConversationCard title={obj.title}
                                                       speakersCount={obj.speakersCount}

@@ -6,14 +6,19 @@ import {Button} from '../Button';
 import styles from './Room.module.scss';
 
 interface RoomProps {
-    title: string
+    room: {
+        guests: [],
+        title: string
+    }
 }
 
-export const Room: React.FC<RoomProps> = ({title}) => {
+export const Room: React.FC<RoomProps> = ({room}) => {
+    const speakers: [] = room.guests
+    console.log(speakers);
     return (
         <div className={styles.wrapper}>
             <div className="d-flex align-items-center justify-content-between">
-                <h2>{title}</h2>
+                <h2>{room.title}</h2>
                 <div className={clsx('d-flex align-items-center', styles.actionButtons)}>
                     <Link href="/rooms" passHref>
                         <a>
@@ -25,7 +30,18 @@ export const Room: React.FC<RoomProps> = ({title}) => {
                     </Link>
                 </div>
             </div>
+            <div>
 
+                <h2>Гости :</h2>
+                {speakers.map((obj, index) => {
+                    return (
+                        <h3 key={index}>
+                            {obj}
+                        </h3>
+                    )
+                })}
+
+            </div>
             <div className="users">
                 {}
             </div>
