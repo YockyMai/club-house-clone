@@ -22,8 +22,8 @@ const RoomsPage: React.FC<RoomProps> = ({room}) => {
                         </h2>
                     </a>
                 </Link>
-                <Room room={room}/>
             </div>
+            <Room room={room}/>
         </>
     );
 };

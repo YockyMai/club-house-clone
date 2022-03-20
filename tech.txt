@@ -1,0 +1,4 @@
+passport - штука для авторизации удобная
+jwt token - хз потом разберусь
+express - как jquery только для ноды
+cleadotenv
