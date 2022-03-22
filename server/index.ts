@@ -4,10 +4,8 @@ import dotenv from 'dotenv';
 dotenv.config({
 	path: './server/.env',
 });
-
 import { passport } from './core/passport';
-
-const app = express(); //инициализируем сервер с помощью express!q
+const app = express(); //инициализируем сервер с помощью express!
 
 app.get('/test', (req, res) => {
 	// принимает url и функцию

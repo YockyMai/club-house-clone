@@ -6,6 +6,7 @@ import {StepInfo} from '../../StepInfo';
 import {Avatar} from '../../Avatar';
 
 import styles from './ChooseAvatarStep.module.scss';
+import Link from 'next/link';
 
 interface ChooseAvatarStep {
     onNextStep: any
@@ -50,10 +51,14 @@ export const ChooseAvatarStep: React.FC<ChooseAvatarStep> = ({onNextStep}) => {
                     </label>
                 </div>
                 <input ref={inputFileRef} id="image" type="file" hidden/>
-                <Button onClick={nextStep}>
-                    Next
-                    <img className="d-ib ml-10" src="/static/arrow.svg"/>
-                </Button>
+                <Link href="http://localhost:3001/auth/github">
+                    <a>
+                        <Button onClick={nextStep}>
+                            Next
+                            <img className="d-ib ml-10" src="/static/arrow.svg"/>
+                        </Button>
+                    </a>
+                </Link>
             </WhiteBlock>
         </div>
     );

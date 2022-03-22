@@ -18,6 +18,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.4.1",
     "next": "12.1.0",
     "node-sass": "^7.0.1",
     "passport": "^0.5.2",
