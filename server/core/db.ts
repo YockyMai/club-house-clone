@@ -1,17 +1,15 @@
-const {MongoClient} = require('mongodb');
+import { Sequelize } from "sequelize";
 
-const URL =
-    'mongodb+srv://ValeriyGrigorev:Dfkthf15102003@cluster0.1tyia.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const sequelize = new Sequelize(
+  String(process.env.DB_NAME),
+  String(process.env.DB_USER),
+  process.env.DB_PASSWORD,
+  {
+    dialect: "postgres",
+    host: process.env.HOST,
+    port: Number(process.env.DB_PORT),
+    logging: true,
+  }
+);
 
-const client = new MongoClient(URL);
-
-(async () => {
-    try {
-        await client.connect();
-        console.log('Connection has been established successfully.');
-    } catch (e) {
-        console.error('Unable to connect to the database:', e);
-    }
-})();
-
-export {client};
+export { sequelize };

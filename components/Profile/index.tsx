@@ -12,7 +12,7 @@ interface ProfileProps {
     about: string,
     followers: number,
     following: number,
-    userId: number | string
+    userId: any
 }
 
 export const Profile: React.FC<ProfileProps> = ({fullname, username, AvatarUrl, about, followers, following, userId}) => {

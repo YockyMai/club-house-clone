@@ -1,7 +1,7 @@
 .handWaveImg {
   animation-name: wave-animation;
   animation-duration: 3s;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
   transform-origin: 70% 70%;
   display: inline-block;
   width: 2.5rem;
