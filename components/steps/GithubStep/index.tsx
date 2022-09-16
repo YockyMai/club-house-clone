@@ -1,18 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { WhiteBlock } from "../../WhiteBlock";
 import { Button } from "../../Button";
 import { StepInfo } from "../../StepInfo";
 import styles from "./TwitterStep.module.scss";
+import { BsGithub } from "react-icons/bs";
+import { userModel } from "../../../types/models/user";
 
 interface TwitterStepProps {
   onNextStep: any;
 }
 
-export const TwitterStep: React.FC<TwitterStepProps> = ({ onNextStep }) => {
+export const GithubStep: React.FC<TwitterStepProps> = ({ onNextStep }) => {
   function nextStep() {
     onNextStep();
   }
+
+  const importGitHubInfo = () => {
+    const authWindow = window.open(
+      "http://localhost:3001/auth/github",
+      "GitHub authentication...",
+      "width=900,height=900"
+    );
+
+    const closeInterval = setInterval(() => {
+      if (authWindow && authWindow.closed) {
+        clearInterval(closeInterval);
+        onNextStep();
+      }
+    }, 500);
+  };
+
+  useEffect(() => {
+    const handleMessage = ({ data }: MessageEvent<userModel>) => {
+      console.log(data);
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
 
   return (
     <div className={styles.block}>
@@ -38,13 +67,9 @@ export const TwitterStep: React.FC<TwitterStepProps> = ({ onNextStep }) => {
           </svg>
         </div>
         <h2 className="mb-40">Your info</h2>
-        <Button>
-          <img
-            src="/static/twitter.svg"
-            alt="Twitter logo"
-            className={styles.twitterLogo}
-          />
-          Import from Twitter
+        <Button onClick={importGitHubInfo}>
+          <BsGithub size={22} className={styles.githubLogo} />
+          Import from GitHub
           <img className="d-ib ml-10" src="/static/arrow.svg" />
         </Button>
         <div onClick={nextStep} className="link mt-20 cup d-ib">

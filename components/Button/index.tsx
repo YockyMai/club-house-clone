@@ -1,29 +1,37 @@
-import clsx from 'clsx';
-import React from 'react';
+import clsx from "clsx";
+import React from "react";
 
-import styles from './Button.module.scss';
+import styles from "./Button.module.scss";
 
 const colors = {
-    green: styles.buttonGreen,
-    gray: styles.buttonGray,
-    blue: styles.buttonBlue,
+  green: styles.buttonGreen,
+  gray: styles.buttonGray,
+  blue: styles.buttonBlue,
 };
 
 interface ButtonProps {
-    disabled?: boolean;
-    color?: keyof typeof colors;
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-    className?: string;
+  disabled?: boolean;
+  color?: keyof typeof colors;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
+  isLoaded?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({disabled, className, color, children, onClick}) => {
-    return (
-        <button
-            onClick={onClick}
-            type="button"
-            className={clsx(className, styles.button, color ? colors[color] : '')}
-            disabled={disabled}>
-            {children}
-        </button>
-    );
+export const Button: React.FC<ButtonProps> = ({
+  disabled,
+  className,
+  color,
+  children,
+  onClick,
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      type="button"
+      className={clsx(className, styles.button, color ? colors[color] : "")}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
 };

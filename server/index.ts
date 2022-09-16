@@ -10,6 +10,8 @@ const app = express(); //инициализируем сервер с помощ
 
 const PORT = process.env.PORT;
 
+app.use(passport.initialize());
+
 app.get("/test", (req, res) => {
   // принимает url и функцию
   res.send("Hello"); // send отправляет html броаузеру
@@ -22,8 +24,16 @@ app.get(
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
     // Successful authentication, redirect home.
-    res.redirect("/");
-    res.send();
+    const callbackScript = `
+      <script>
+        window.opener.postMessage(${JSON.stringify(
+          req.user
+        )}, 'http://localhost:3000');
+        window.close()
+      </script>
+    `;
+
+    res.send(callbackScript);
   }
 );
 
