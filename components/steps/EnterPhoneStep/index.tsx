@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import clsx from "clsx";
 import NumberFormat from "react-number-format";
 import { WhiteBlock } from "../../WhiteBlock";
@@ -6,21 +6,18 @@ import { Button } from "../../Button";
 import { StepInfo } from "../../StepInfo";
 
 import styles from "./EnterPhoneStep.module.scss";
+import { MainContext } from "../../../pages";
 
-type InputValueState = {
-  formattedValue: string;
-  value: string;
-  onNextStep: any;
-};
+export const EnterPhoneStep: React.FC = () => {
+  const { setFieldValue, userData, onNextStep } = useContext(MainContext);
+  const [formattedPhone, setFormattedPhone] = useState("");
 
-export const EnterPhoneStep: React.FC<InputValueState> = ({ onNextStep }) => {
-  const [values, setValues] = React.useState<{
-    formattedValue: string;
-    value: string;
-  }>({} as InputValueState);
+  const onPhoneChange = (phone: string, formattedPhone: string) => {
+    setFieldValue("phone", phone);
+    setFormattedPhone(formattedPhone);
+  };
 
-  const nextDisabled =
-    !values.formattedValue || values.formattedValue.includes("_");
+  const nextDisabled = !userData?.phone || formattedPhone.includes("_");
 
   function nextStep() {
     onNextStep();
@@ -41,15 +38,15 @@ export const EnterPhoneStep: React.FC<InputValueState> = ({ onNextStep }) => {
             format="+7 (###) ###-##-##"
             mask="_"
             placeholder="+7 (999) 999-99-99"
-            value={values.value}
-            onValueChange={({ formattedValue, value }) =>
-              setValues({ formattedValue, value })
-            }
+            value={userData!.phone}
+            onValueChange={({ formattedValue, value }) => {
+              onPhoneChange(value, formattedValue);
+            }}
           />
         </div>
         <Button disabled={nextDisabled} onClick={nextStep}>
           Next
-          <img className="d-ib ml-10" src="/static/arrow.svg" />
+          <img className="d-ib ml-10" src="/static/arrow.svg" alt=" →" />
         </Button>
         <p className={clsx(styles.policyText, "mt-30")}>
           By entering your number, you’re agreeing to our Terms of Service and

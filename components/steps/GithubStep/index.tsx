@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import clsx from "clsx";
 import { WhiteBlock } from "../../WhiteBlock";
 import { Button } from "../../Button";
@@ -6,33 +6,34 @@ import { StepInfo } from "../../StepInfo";
 import styles from "./TwitterStep.module.scss";
 import { BsGithub } from "react-icons/bs";
 import { userModel } from "../../../types/models/user";
+import { MainContext } from "../../../pages";
 
-interface TwitterStepProps {
-  onNextStep: any;
-}
+export const GithubStep: React.FC = () => {
+  const { onNextStep, setUserData } = useContext(MainContext);
 
-export const GithubStep: React.FC<TwitterStepProps> = ({ onNextStep }) => {
   function nextStep() {
     onNextStep();
   }
 
-  const importGitHubInfo = () => {
-    const authWindow = window.open(
+  const openGitHubWindow = () => {
+    window.open(
       "http://localhost:3001/auth/github",
       "GitHub authentication...",
       "width=900,height=900"
     );
-
-    const closeInterval = setInterval(() => {
-      if (authWindow && authWindow.closed) {
-        clearInterval(closeInterval);
-        onNextStep();
-      }
-    }, 500);
   };
 
   useEffect(() => {
     const handleMessage = ({ data }: MessageEvent<userModel>) => {
+      if (data.username) {
+        setUserData({
+          username: data.username,
+          phone: data.phone,
+          avatarUrl: data.avatarUrl,
+          fullname: data.username,
+        });
+        onNextStep();
+      }
       console.log(data);
     };
 
@@ -67,10 +68,10 @@ export const GithubStep: React.FC<TwitterStepProps> = ({ onNextStep }) => {
           </svg>
         </div>
         <h2 className="mb-40">Your info</h2>
-        <Button onClick={importGitHubInfo}>
+        <Button onClick={openGitHubWindow}>
           <BsGithub size={22} className={styles.githubLogo} />
           Import from GitHub
-          <img className="d-ib ml-10" src="/static/arrow.svg" />
+          <img className="d-ib ml-10" src="/static/arrow.svg" alt=" →" />
         </Button>
         <div onClick={nextStep} className="link mt-20 cup d-ib">
           Enter my info manually

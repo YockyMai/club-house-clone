@@ -30,7 +30,7 @@ passport.use(
           const user = await User.create({
             fullname: profile.displayName,
             avatarUrl: profile.photos?.[0].value,
-            phone: "892763713",
+            phone: profile.phone ? profile.phone : "",
             username: profile.username,
           } as Omit<userModel, "isActive" | "createdAt" | "updatedAt" | "id">);
 

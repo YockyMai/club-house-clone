@@ -1,49 +1,46 @@
-import clsx from 'clsx';
-import {WhiteBlock} from '../../WhiteBlock';
-import {Button} from '../../Button';
-import {StepInfo} from '../../StepInfo';
+import clsx from "clsx";
+import { WhiteBlock } from "../../WhiteBlock";
+import { Button } from "../../Button";
+import { StepInfo } from "../../StepInfo";
 
-import styles from './EnterNameStep.module.scss';
-import React from 'react';
+import styles from "./EnterNameStep.module.scss";
+import React, { useContext } from "react";
+import { MainContext } from "../../../pages";
 
-interface EnterPhoneStepProps {
-    onNextStep: any
-}
+export const EnterNameStep: React.FC = () => {
+  const { onNextStep, setFieldValue, userData } = useContext(MainContext);
 
-export const EnterNameStep: React.FC<EnterPhoneStepProps> = ({onNextStep}) => {
-    const [inputValue, setInputValue] = React.useState<string>('');
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldValue("fullname", event.target.value);
+  };
 
-    const nextDisabled: boolean = inputValue.length <= 3
+  function nextStep() {
+    onNextStep();
+  }
 
-    const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.target.value);
-    };
+  const nextDisabled: boolean = userData!.fullname.length <= 3;
 
-    function nextStep() {
-        onNextStep()
-    }
-
-    return (
-        <div className={styles.block}>
-            <StepInfo
-                icon="/static/man.png"
-                title="What’s your full name?"
-                description="People use real names on Clubhouse :) Thnx!"
-            />
-            <WhiteBlock className={clsx('m-auto', styles.whiteBlock)}>
-                <div className="mb-30">
-                    <input
-                        onChange={handleChangeInput}
-                        value={inputValue}
-                        className="field"
-                        placeholder="Enter fullname"
-                    />
-                </div>
-                <Button disabled={nextDisabled} onClick={nextStep}>
-                    Next
-                    <img alt=" →" className="d-ib ml-10" src="/static/arrow.svg"/>
-                </Button>
-            </WhiteBlock>
+  return (
+    <div className={styles.block}>
+      <StepInfo
+        icon="/static/man.png"
+        title="What’s your full name?"
+        description="People use real names on Clubhouse :) Thnx!"
+      />
+      <WhiteBlock className={clsx("m-auto", styles.whiteBlock)}>
+        <div className="mb-30">
+          <input
+            onChange={handleChangeInput}
+            value={userData?.fullname}
+            className="field"
+            placeholder="Enter fullname"
+          />
         </div>
-    );
+        <Button disabled={nextDisabled} onClick={nextStep}>
+          Next
+          <img alt=" →" className="d-ib ml-10" src="/static/arrow.svg" />
+        </Button>
+      </WhiteBlock>
+    </div>
+  );
 };

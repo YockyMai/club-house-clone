@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import clsx from "clsx";
 import { WhiteBlock } from "../../WhiteBlock";
 import { Button } from "../../Button";
 import { StepInfo } from "../../StepInfo";
 import { Avatar } from "../../Avatar";
 import styles from "./ChooseAvatarStep.module.scss";
+import { MainContext } from "../../../pages";
+import avatarUpload from "../../../api/user/avatarUpload";
+import { getAvatarUrl } from "../../../helpers/getImageUrls";
 
 interface ChooseAvatarStep {
   onNextStep: any;
@@ -13,22 +16,30 @@ interface ChooseAvatarStep {
 export const ChooseAvatarStep: React.FC<ChooseAvatarStep> = ({
   onNextStep,
 }) => {
-  const inputFileRef = React.useRef<HTMLInputElement>(null); //TODO ССЫЛКА НА ИНПУТ ДЛЯ ИЗОБРАЖЕНИЕ!!!
-  const [AvatarUrl, setAvatarUrl] = React.useState<string>(
-    "https://sun9-88.userapi.com/impg/HkZdX8PtD1cQvzTFgu-1PHJJHbwHHQHEZqyoqA/Z5rucSYfULk.jpg?size=500x500&quality=95&sign=dfc6919a68b5bb04e91b073b54d05920&type=album"
-  );
+  const inputFileRef = React.useRef<HTMLInputElement>(null);
+
+  const { setFieldValue, userData } = useContext(MainContext);
+
   const handleChangeImage = (event: Event): void => {
-    const file = (event.target as HTMLInputElement).files[0];
-    if (file.type == ("image/jpeg" || "image/png" || "image/gif")) {
-      const imageUrl = URL.createObjectURL(file); //TODO СОЗДАЕТ URL ФАЙЛА ВРЕМЕННО!!!
-      setAvatarUrl(imageUrl);
-    } else alert("The image must be in jpeg or png format");
+    const file = (event.target as any).files[0];
+    if (file)
+      avatarUpload(file)
+        .then((url) => {
+          console.log(getAvatarUrl(url));
+          setFieldValue("avatarUrl", getAvatarUrl(url));
+          (event.target as HTMLInputElement).value = "";
+        })
+        .catch((err) => alert(err));
   };
 
   React.useEffect(() => {
     if (inputFileRef.current) {
       inputFileRef.current.addEventListener("change", handleChangeImage);
     }
+
+    return () => {
+      removeEventListener("change", handleChangeImage);
+    };
   }, []);
 
   function nextStep() {
@@ -39,12 +50,20 @@ export const ChooseAvatarStep: React.FC<ChooseAvatarStep> = ({
     <div className={styles.block}>
       <StepInfo
         icon="/static/celebration.png"
-        title="Okay, Archakov Dennis!"
+        title={`Okay, ${userData?.fullname}`}
         description="How’s this photo?"
       />
       <WhiteBlock className={clsx("m-auto mt-40", styles.whiteBlock)}>
         <div className={styles.avatar}>
-          <Avatar width="120px" height="120px" src={AvatarUrl} />
+          <Avatar
+            width="120px"
+            height="120px"
+            src={
+              userData?.avatarUrl
+                ? userData.avatarUrl
+                : "/static/empty-avatar.png"
+            }
+          />
         </div>
         <div className="mb-30">
           <label htmlFor="image" className="link cup">
