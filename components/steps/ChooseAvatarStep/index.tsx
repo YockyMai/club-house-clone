@@ -25,8 +25,7 @@ export const ChooseAvatarStep: React.FC<ChooseAvatarStep> = ({
     if (file)
       avatarUpload(file)
         .then((url) => {
-          console.log(getAvatarUrl(url));
-          setFieldValue("avatarUrl", getAvatarUrl(url));
+          setFieldValue("avatarUrl", getAvatarUrl(url, "origin"));
           (event.target as HTMLInputElement).value = "";
         })
         .catch((err) => alert(err));

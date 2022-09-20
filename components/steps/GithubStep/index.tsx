@@ -3,10 +3,15 @@ import clsx from "clsx";
 import { WhiteBlock } from "../../WhiteBlock";
 import { Button } from "../../Button";
 import { StepInfo } from "../../StepInfo";
-import styles from "./TwitterStep.module.scss";
+import styles from "./GithubStep.module.scss";
 import { BsGithub } from "react-icons/bs";
 import { userModel } from "../../../types/models/user";
 import { MainContext } from "../../../pages";
+import Cookies from "js-cookie";
+
+interface GitHubAuthRes extends userModel {
+  token: string;
+}
 
 export const GithubStep: React.FC = () => {
   const { onNextStep, setUserData } = useContext(MainContext);
@@ -24,7 +29,7 @@ export const GithubStep: React.FC = () => {
   };
 
   useEffect(() => {
-    const handleMessage = ({ data }: MessageEvent<userModel>) => {
+    const handleMessage = ({ data }: MessageEvent<GitHubAuthRes>) => {
       if (data.username) {
         setUserData({
           username: data.username,
@@ -32,9 +37,10 @@ export const GithubStep: React.FC = () => {
           avatarUrl: data.avatarUrl,
           fullname: data.username,
         });
+        Cookies.set("token", `Bearer ${data.token}`);
+        console.log(data);
         onNextStep();
       }
-      console.log(data);
     };
 
     window.addEventListener("message", handleMessage);

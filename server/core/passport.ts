@@ -1,7 +1,8 @@
 import passport from "passport";
 import { VerifyCallback } from "passport-oauth2";
-import { User } from "../models";
-import { userModel } from "../../types/models/user";
+import { User } from "../models/models";
+import createJwtToken from "../utils/createJwtToken";
+import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 
 const GitHubStrategy = require("passport-github").Strategy;
 
@@ -30,29 +31,72 @@ passport.use(
           const user = await User.create({
             fullname: profile.displayName,
             avatarUrl: profile.photos?.[0].value,
-            phone: profile.phone ? profile.phone : "",
+            phone: profile.phone || "",
             username: profile.username,
-          } as Omit<userModel, "isActive" | "createdAt" | "updatedAt" | "id">);
+          });
 
-          return done(null, user);
+          return done(null, {
+            ...user.toJSON(),
+            token: createJwtToken(user.toJSON()),
+          });
         }
 
-        return candidate;
-      } catch (error) {
-        error instanceof Error && done(error);
+        return done(null, {
+          ...candidate.toJSON(),
+          token: createJwtToken(candidate.toJSON()),
+        });
+      } catch (e) {
+        console.log(e);
+        e instanceof Error && done(e);
       }
     }
   )
 );
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findOne({ where: { id } });
+    if (!user) {
+      done("User not found");
+    }
+    done(null, user);
+  } catch (e) {
+    console.log(e);
+    done(e);
+  }
 });
+
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET,
+};
+passport.use(
+  new JwtStrategy(opts, async (jwt_payload, done) => {
+    try {
+      const user = await User.findOne({ where: { id: jwt_payload.id } });
+
+      if (user) {
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
+    } catch (e) {
+      console.log(e);
+      done(e);
+    }
+  })
+);
+
+const cookieExtractor = (req: any) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies["jwt"];
+  }
+  return token;
+};
 
 export { passport };

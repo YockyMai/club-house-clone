@@ -7,6 +7,7 @@ import { StepInfo } from "../../StepInfo";
 
 import styles from "./EnterPhoneStep.module.scss";
 import { MainContext } from "../../../pages";
+import axios from "../../../core/axios";
 
 export const EnterPhoneStep: React.FC = () => {
   const { setFieldValue, userData, onNextStep } = useContext(MainContext);
@@ -20,7 +21,13 @@ export const EnterPhoneStep: React.FC = () => {
   const nextDisabled = !userData?.phone || formattedPhone.includes("_");
 
   function nextStep() {
-    onNextStep();
+    if (userData?.phone) {
+      axios.post("auth/phone", {
+        userId: 21,
+        phone: "7" + userData?.phone,
+      });
+      onNextStep();
+    }
   }
 
   return (
